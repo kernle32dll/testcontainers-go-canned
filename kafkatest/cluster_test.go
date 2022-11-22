@@ -60,6 +60,7 @@ func shutdownCluster(t *testing.T, kafkaCluster *kafkatest.KafkaCluster) func() 
 
 		if kafkaCluster == nil {
 			t.Log("Kafka cluster not started, skipping teardown")
+			return
 		}
 
 		t.Log("Tearing down kafka cluster")

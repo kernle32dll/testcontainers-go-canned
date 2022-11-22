@@ -251,6 +251,7 @@ func (kc *KafkaCluster) createZookeeperContainer(ctx context.Context) error {
 			NetworkAliases: map[string][]string{kc.networkName: {"zookeeper"}},
 			WaitingFor:     kc.options.ZookeeperWaitStrategy,
 		},
+		Logger: kc.options.Logger,
 	})
 	if err != nil {
 		return err
@@ -301,6 +302,7 @@ func (kc *KafkaCluster) createKafkaContainer(ctx context.Context) error {
 			NetworkAliases: map[string][]string{kc.networkName: {"kafka"}},
 			Cmd:            []string{"/bin/sh", "-c", "while [ ! -f /testcontainers_start.sh ]; do sleep 0.1; done; /testcontainers_start.sh"},
 		},
+		Logger: kc.options.Logger,
 	})
 	if err != nil {
 		return err
